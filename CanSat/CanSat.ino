@@ -1,6 +1,6 @@
 /*
 Wirering:
-Battery > Arduino
+9V Battery > Arduino
 + > Vin
 - > gnd
 
