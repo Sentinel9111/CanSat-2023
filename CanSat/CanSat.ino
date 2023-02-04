@@ -26,10 +26,9 @@ scd > D10
 TO DO:
 GPS
 Wings
-SD-Card?
 */
 
-#include <SoftwareSerial.h> 
+#include <SoftwareSerial.h>
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_Sensor.h>
@@ -37,47 +36,49 @@ SD-Card?
 
 #define BMP_SCK 13
 #define BMP_MISO 12
-#define BMP_MOSI 11 
+#define BMP_MOSI 11
 #define BMP_CS 10
 
-//Adafruit_BMP280 bmp; // I2C
-//Adafruit_BMP280 bmp(BMP_CS); // hardware SPI
-Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO,  BMP_SCK);
+Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO, BMP_SCK);
 
 const int BMP_address = 0x76;
 
-SoftwareSerial mySerial(2,3);//RX, TX int number = 0;
+SoftwareSerial mySerial(2, 3); // RX, TX int number = 0;
 int number = 0;
 
-void setup() { 
+void setup()
+{
   Serial.begin(9600);
-mySerial.begin(9600);
+  mySerial.begin(9600);
 
-Serial.println(F("BMP280 test"));
-bmp.begin(BMP_address);
-  
-if (!bmp.begin(BMP_address)) {  
-  Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
-  while (1);
+  Serial.println(F("BMP280 test"));
+  bmp.begin(BMP_address);
+
+  if (!bmp.begin(BMP_address))
+  {
+    Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
+    while (1)
+      ;
   }
 }
 
-void loop() {
-String input = Serial.readString();
-mySerial.println(input);
+void loop()
+{
+  String input = Serial.readString();
+  mySerial.println(input);
 
-mySerial.print(F("Temperature = "));
-mySerial.print(bmp.readTemperature());
-mySerial.println(" *C");
-    
-mySerial.print(F("Pressure = "));
-mySerial.print(bmp.readPressure());
-mySerial.println(" Pa");
+  mySerial.print(F("Temperature = "));
+  mySerial.print(bmp.readTemperature());
+  mySerial.println(" *C");
 
-mySerial.print(F("Approx altitude = "));
-mySerial.print(bmp.readAltitude(1020.00)); // this should be adjusted to your local forcase
-mySerial.println(" m");
-    
-mySerial.println();
-delay(2000);
+  mySerial.print(F("Pressure = "));
+  mySerial.print(bmp.readPressure());
+  mySerial.println(" Pa");
+
+  mySerial.print(F("Approx altitude = "));
+  mySerial.print(bmp.readAltitude(1020.00)); // this should be adjusted to your local forcase
+  mySerial.println(" m");
+
+  mySerial.println();
+  delay(2000);
 }
