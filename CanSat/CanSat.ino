@@ -44,7 +44,6 @@ Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO, BMP_SCK);
 const int BMP_address = 0x76;
 
 SoftwareSerial mySerial(2, 3); // RX, TX int number = 0;
-int number = 0;
 
 void setup()
 {
@@ -57,8 +56,7 @@ void setup()
   if (!bmp.begin(BMP_address))
   {
     Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
-    while (1)
-      ;
+    while (1);
   }
 }
 
@@ -72,11 +70,11 @@ void loop()
   mySerial.println(" *C");
 
   mySerial.print(F("Pressure = "));
-  mySerial.print(bmp.readPressure());
-  mySerial.println(" Pa");
+  mySerial.print(bmp.readPressure() * 0.01);
+  mySerial.println(" hPa");
 
   mySerial.print(F("Approx altitude = "));
-  mySerial.print(bmp.readAltitude(1020.00)); // this should be adjusted to your local forcase
+  mySerial.print(bmp.readAltitude(1039.85)); // this should be adjusted to the pressure at ground level
   mySerial.println(" m");
 
   mySerial.println();
