@@ -24,10 +24,10 @@ SDO > D10
 BMP280 > Arduino Nano
 vcc > 3.3V
 gnd > gnd
-SCL > D13
-SDA > D11
-CSB > D10
-SDO > D12
+SCL > A5
+SDA > A4
+CSB > Not connected
+SDO > Not connected
 */
 
 /*
@@ -47,8 +47,8 @@ Wings
 #define BMP_MOSI 11
 #define BMP_CS 10
 
-// Adafruit_BMP280 bmp(BMP_CS); // use with Arduino Nano
-Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO, BMP_SCK); // use with Arduino Uno
+Adafruit_BMP280 bmp; // use with Arduino Nano
+// Adafruit_BMP280 bmp(BMP_CS, BMP_MOSI, BMP_MISO, BMP_SCK); // use with Arduino Uno
 
 const int BMP_address = 0x76;
 
