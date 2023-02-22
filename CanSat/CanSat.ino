@@ -28,12 +28,14 @@ SCL > A5
 SDA > A4
 CSB > Not connected
 SDO > Not connected
-*/
 
-/*
-TO DO:
-GPS
-Wings
+BN-880 > Arduino
+SCL > Not connected
+vcc > 5V
+RX > D1 (TX)
+TX > D2 (RX)
+gnd > gnd
+SDA > Not connected
 */
 
 #include <SoftwareSerial.h>
